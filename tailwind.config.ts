@@ -9,8 +9,17 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        navy: "#0d1117",
+        surface: "#161b22",
+        border: "#21262d",
+        "text-primary": "#f0f6fc",
+        "text-secondary": "#8b949e",
+      },
+      fontFamily: {
+        sans: ["var(--font-inter)", "sans-serif"],
+      },
+      backgroundImage: {
+        "mark-gradient": "linear-gradient(135deg, #9ca3af, #2b323d)",
       },
     },
   },
