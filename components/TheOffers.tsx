@@ -5,28 +5,28 @@ import { useRef } from "react";
 
 const offers = [
   {
+    number: "01",
     name: "On-Demand",
-    subtitle: "Project-based. Hybrid team. Competitive rates.",
-    body: "Need to move fast on a specific project? We work like an agency — hybrid local and offshore team, matched to your scope. You pay less than you would at a local agency. We get moving quickly.",
+    subtitle: "Project-based · Short-term contracts · Guaranteed milestones",
+    body: "Need to move fast? Short-term contracts with senior supervision and a delivery milestone guaranteed. Every On-Demand engagement is a potential Growth partnership.",
     cta: "Start a project",
-    highlight: false,
-    badge: null,
+    featured: false,
   },
   {
+    number: "02",
     name: "Growth",
-    subtitle: "Long-term. Dedicated team. One invoice.",
-    body: "We become your offshore hiring infrastructure. Dedicated engineers embedded in your org. We scout, hire, manage, and replace. You handle the product. We handle everything else.",
+    subtitle: "Long-term retainer · Embedded operations · One invoice",
+    body: "We become your offshore hiring infrastructure. Dedicated engineers, fractional tech HR, talent operations, and full delivery management — on a monthly retainer. This is the core engine.",
     cta: "Build your team",
-    highlight: true,
-    badge: "Recommended",
+    featured: true,
   },
   {
+    number: "03",
     name: "Cohorts",
-    subtitle: "Equity partnership. 15% non-diluted.",
-    body: "Early-stage with a strong thesis but limited runway? We build your product in exchange for equity. We only take on companies we'd invest in.",
-    cta: "Let's talk",
-    highlight: false,
-    badge: null,
+    subtitle: "Equity partnership · 15% non-diluted",
+    body: "Early-stage with a strong thesis but limited runway? Full Growth-tier engagement in exchange for equity. We only take on companies we'd invest in.",
+    cta: "Let's talk equity",
+    featured: false,
   },
 ];
 
@@ -35,87 +35,66 @@ export default function TheOffers() {
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section ref={ref} className="py-28 px-6 bg-[#161b22]">
+    <section ref={ref} id="offers" className="py-32 px-6 bg-white">
       <div className="max-w-5xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, ease: "easeOut" }}
+          transition={{ duration: 0.6 }}
           className="mb-16"
         >
-          <p className="text-xs font-semibold uppercase tracking-widest text-[#8b949e] mb-4">
-            How We Work
+          <p className="text-xs font-semibold uppercase tracking-widest text-[#888] mb-5">
+            How We Engage
           </p>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-[#f0f6fc] leading-tight">
-            Three ways to engage.
+          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-extrabold text-[#0a0a0a] leading-tight">
+            Three ways in.
+            <br />
+            <span className="text-[#999] font-normal">One operating model.</span>
           </h2>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-5">
+        <div className="grid md:grid-cols-3 gap-4">
           {offers.map((offer, i) => (
             <motion.div
               key={i}
               initial={{ opacity: 0, y: 24 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.15 * (i + 1), ease: "easeOut" }}
-              className={`relative rounded-xl border p-8 flex flex-col transition-all duration-300 group ${
-                offer.highlight
-                  ? "bg-[#f0f6fc] border-[#f0f6fc] text-[#0d1117]"
-                  : "bg-[#0d1117] border-[#21262d] text-[#f0f6fc] hover:border-[#30363d]"
+              transition={{ duration: 0.6, delay: 0.12 * (i + 1) }}
+              className={`rounded-2xl p-8 flex flex-col h-full transition-all duration-200 ${
+                offer.featured
+                  ? "bg-[#0a0a0a] text-white"
+                  : "bg-[#fafafa] border border-[#ebebeb] hover:border-[#d0d0d0] hover:shadow-[0_4px_24px_rgba(0,0,0,0.06)]"
               }`}
-              style={
-                offer.highlight
-                  ? {}
-                  : {
-                      transition: "border-color 0.3s, box-shadow 0.3s",
-                    }
-              }
-              onMouseEnter={(e) => {
-                if (!offer.highlight) {
-                  (e.currentTarget as HTMLElement).style.boxShadow =
-                    "0 0 0 1px rgba(240,246,252,0.08), 0 8px 32px rgba(0,0,0,0.4)";
-                }
-              }}
-              onMouseLeave={(e) => {
-                if (!offer.highlight) {
-                  (e.currentTarget as HTMLElement).style.boxShadow = "";
-                }
-              }}
             >
-              {offer.badge && (
-                <span className="absolute top-5 right-5 text-xs font-semibold px-2 py-0.5 rounded bg-[#21262d] text-[#8b949e]">
-                  {offer.badge}
+              <div className="flex items-start justify-between mb-6">
+                <span className={`text-xs font-mono ${offer.featured ? "text-white/30" : "text-[#aaa]"}`}>
+                  {offer.number}
                 </span>
-              )}
-              <h3
-                className={`text-2xl font-bold mb-1 ${
-                  offer.highlight ? "text-[#0d1117]" : "text-[#f0f6fc]"
-                }`}
-              >
+                {offer.featured && (
+                  <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-white/10 text-white/60">
+                    Core Offer
+                  </span>
+                )}
+              </div>
+
+              <h3 className={`font-display text-2xl font-extrabold mb-2 ${offer.featured ? "text-white" : "text-[#0a0a0a]"}`}>
                 {offer.name}
               </h3>
-              <p
-                className={`text-sm mb-5 ${
-                  offer.highlight ? "text-[#30363d]" : "text-[#8b949e]"
-                }`}
-              >
+              <p className={`text-xs mb-5 leading-relaxed ${offer.featured ? "text-white/35" : "text-[#aaa]"}`}>
                 {offer.subtitle}
               </p>
-              <p
-                className={`text-sm leading-relaxed flex-1 mb-8 ${
-                  offer.highlight ? "text-[#21262d]" : "text-[#8b949e]"
-                }`}
-              >
+              <p className={`text-sm leading-relaxed flex-1 mb-8 ${offer.featured ? "text-white/50" : "text-[#666]"}`}>
                 {offer.body}
               </p>
+
               <a
                 href="https://cal.com/betterfit/discovery"
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`inline-block text-sm font-semibold px-5 py-2.5 rounded-md text-center transition-colors duration-200 ${
-                  offer.highlight
-                    ? "bg-[#0d1117] text-[#f0f6fc] hover:bg-[#161b22]"
-                    : "border border-[#21262d] text-[#f0f6fc] hover:bg-[#161b22]"
+                className={`inline-block text-sm font-semibold px-5 py-2.5 rounded-full text-center transition-all duration-200 ${
+                  offer.featured
+                    ? "bg-white text-[#0a0a0a] hover:bg-[#f0f0f0]"
+                    : "bg-[#0a0a0a] text-white hover:bg-[#1a1a1a]"
                 }`}
               >
                 {offer.cta} →
@@ -123,6 +102,15 @@ export default function TheOffers() {
             </motion.div>
           ))}
         </div>
+
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={inView ? { opacity: 1 } : {}}
+          transition={{ duration: 0.6, delay: 0.6 }}
+          className="text-center text-[#aaa] text-sm mt-8"
+        >
+          Most Growth clients started On-Demand. They saw the model — then we built their team.
+        </motion.p>
       </div>
     </section>
   );

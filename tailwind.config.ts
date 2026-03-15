@@ -17,6 +17,7 @@ const config: Config = {
       },
       fontFamily: {
         sans: ["var(--font-inter)", "sans-serif"],
+        display: ["var(--font-manrope)", "sans-serif"],
       },
       backgroundImage: {
         "mark-gradient": "linear-gradient(135deg, #9ca3af, #2b323d)",

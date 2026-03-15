@@ -4,6 +4,7 @@ import TheProblem from "@/components/TheProblem";
 import TheModel from "@/components/TheModel";
 import TheGuarantee from "@/components/TheGuarantee";
 import TheOffers from "@/components/TheOffers";
+import Clients from "@/components/Clients";
 import Traction from "@/components/Traction";
 import WhoItsFor from "@/components/WhoItsFor";
 import TheCTA from "@/components/TheCTA";
@@ -18,6 +19,7 @@ export default function Home() {
       <TheModel />
       <TheGuarantee />
       <TheOffers />
+      <Clients />
       <Traction />
       <WhoItsFor />
       <TheCTA />
